@@ -9,13 +9,15 @@ public class InterfazJuego extends JFrame {
     private int intentos;
     private PalabraPorAdivinar palabraPorAdivinar;
     private JLabel mensajes;
+    private boolean win;
 
     public InterfazJuego(String palabraAdivinar){
         tecladoInterfaz = new TecladoInterfaz(this);
         tableroInterfaz = new TableroInterfaz();
         intentos = 0;
+        win = false;
         palabraPorAdivinar = new PalabraPorAdivinar();
-        mensajes = new JLabel("Holaaa");
+        mensajes = new JLabel();
 
         interfazJuego = new JPanel(new BorderLayout());
         setContentPane(interfazJuego);
@@ -26,14 +28,30 @@ public class InterfazJuego extends JFrame {
         setVisible(true);
 
         interfazJuego.add(tableroInterfaz, BorderLayout.NORTH);
-        interfazJuego.add(mensajes, BorderLayout.CENTER);
+        JPanel panelMensaje = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        panelMensaje.add(mensajes);
+        add(panelMensaje, BorderLayout.CENTER);
         interfazJuego.add(tecladoInterfaz, BorderLayout.SOUTH);
-
     }
 
     public void imprimirPalabraIntento(String palabraIntento){
         String palabrAdivinar = palabraPorAdivinar.getPalabraAdivinar();
         tableroInterfaz.mostrarPalabraIntento(palabraIntento, palabrAdivinar ,intentos);
         intentos++;
+        procesarVictoria();
+    }
+
+    public void procesarVictoria(){
+        win = tableroInterfaz.getResultado();
+
+        if(intentos <= 6 && win){
+            mensajes.setText("Has ganado :)");
+            mensajes.setVisible(true);
+            tecladoInterfaz.desactivarJTextField(false);
+        } else if(intentos > 5 && !win){
+            mensajes.setText("Has perdido");
+            mensajes.setVisible(true);
+            tecladoInterfaz.desactivarJTextField(false);
+        }
     }
 }

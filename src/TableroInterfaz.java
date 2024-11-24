@@ -4,6 +4,7 @@ import java.util.HashMap;
 
 public class TableroInterfaz extends JPanel{
     private JLabel[][] palabraIntento;
+    private int letrasVerdes;
 
     public TableroInterfaz(){
         palabraIntento = new JLabel[6][5];
@@ -26,6 +27,8 @@ public class TableroInterfaz extends JPanel{
         String[] palabraAdivinarSplit = palabraAdivinar.split("");
         boolean[] letrasAdivinarUsadas = new boolean[palabraAdivinarSplit.length];
 
+        letrasVerdes = 0;
+
         for(int i=0; i<6; i++){
             if (intento >= 0 && intento < 6 && i < 5) {
                 palabraIntento[intento][i].setText(palabraIntentoSplit[i]);
@@ -34,6 +37,7 @@ public class TableroInterfaz extends JPanel{
                     palabraIntento[intento][i].setOpaque(true);
                     palabraIntento[intento][i].setBackground(Color.green);
                     letrasAdivinarUsadas[i] = true;
+                    letrasVerdes++;
                 }
             }
         }
@@ -53,5 +57,9 @@ public class TableroInterfaz extends JPanel{
                 }
             }
         }
+    }
+
+    public boolean getResultado(){
+        return letrasVerdes == 5;
     }
 }

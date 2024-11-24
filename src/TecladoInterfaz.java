@@ -16,7 +16,9 @@ public class TecladoInterfaz extends JPanel{
 
         ingresarPalabraIntento.setFont(new Font("Arial", Font.PLAIN, 18));
         ingresarPalabraIntento.setColumns(20);
-        add(ingresarPalabraIntento, BorderLayout.NORTH);
+        JPanel panelInput = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        panelInput.add(ingresarPalabraIntento);
+        add(panelInput, BorderLayout.NORTH);
 
         JPanel panelTeclado = new JPanel(new GridLayout(3, 9, 5, 5));
         for (char letra = 'A'; letra <= 'Z'; letra++) {
@@ -44,6 +46,9 @@ public class TecladoInterfaz extends JPanel{
                 }
             }
         });
+    }
 
+    public void desactivarJTextField(boolean queShow){
+        ingresarPalabraIntento.setEnabled(queShow);
     }
 }
