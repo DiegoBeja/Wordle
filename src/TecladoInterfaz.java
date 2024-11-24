@@ -30,10 +30,17 @@ public class TecladoInterfaz extends JPanel{
         ingresarPalabraIntento.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String palabraIntento = ingresarPalabraIntento.getText();
-                if(palabraIntento.length() == 5){
+                String palabraIntento = ingresarPalabraIntento.getText().toUpperCase(); // Convertir a mayúsculas
+                if (palabraIntento.length() == 5) {
                     juego.imprimirPalabraIntento(palabraIntento);
                     ingresarPalabraIntento.setText("");
+                    for (char letra : palabraIntento.toCharArray()) {
+                        JButton boton = botonesTeclado.get(letra);
+                        if (boton != null) {
+                            boton.setEnabled(false); // Deshabilitar el botón
+                            boton.setBackground(Color.GRAY); // Cambiar color de fondo (opcional)
+                        }
+                    }
                 }
             }
         });

@@ -16,7 +16,7 @@ public class PalabraPorAdivinar implements Palabra{
     public String escogerPalabraAdivinar(){
         try {
             int c = 0;
-            BufferedReader leer = new BufferedReader(new FileReader("C:\\Users\\bombo\\IdeaProjects\\Wordle\\src\\palabras.txt"));
+            BufferedReader leer = new BufferedReader(new FileReader("C:\\Users\\bombo\\IdeaProjects\\Wordle\\src\\palabras_5_letras.txt"));
             Random rd = new Random();
             String linea;
             List<String> palabras = new ArrayList<>();
