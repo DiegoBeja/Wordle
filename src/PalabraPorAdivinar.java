@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Random;
 
 public class PalabraPorAdivinar implements Palabra{
-    private static String palabrAdivinar;
+    private static String palabraAdivinar;
 
     public PalabraPorAdivinar(){
         escogerPalabraAdivinar();
@@ -29,8 +29,8 @@ public class PalabraPorAdivinar implements Palabra{
             leer.close();
 
             if(palabras.size() > 0){
-                palabrAdivinar = palabras.get(rd.nextInt(palabras.size()));
-                return palabrAdivinar;
+                palabraAdivinar = palabras.get(rd.nextInt(palabras.size()));
+                return palabraAdivinar;
             } else{
                 System.out.println("Error al escoger la palabra a adivinar");
             }
@@ -45,12 +45,12 @@ public class PalabraPorAdivinar implements Palabra{
 
     public String[] splitPalabra(String palabra){
         String [] palabraSplit = new String[4];
-        palabraSplit = palabrAdivinar.split("");
+        palabraSplit = palabraAdivinar.split("");
 
         return palabraSplit;
     }
 
-    public String getPalabrAdivinar(){
-        return palabrAdivinar;
+    public String getPalabraAdivinar(){
+        return palabraAdivinar;
     }
 }
